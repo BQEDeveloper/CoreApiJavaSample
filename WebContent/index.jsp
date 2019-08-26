@@ -47,7 +47,7 @@
 					//Validate the Decoded Token
 					if(jwtManager.ValidateJWT(jwt)){
 						//Save Auth Response
-			            AuthManager.SaveAuthResponse(authResponse);
+			            authManager.SaveAuthResponse(authResponse);
 					}	
 					else
 						throw new Exception("Invalid JWT");
@@ -57,7 +57,7 @@
 			}
 			
 			//Load Activity List
-		    if(AuthManager.GetAuthResponse() != null){
+		    if(authManager.GetAuthResponse() != null){
 		    	response.sendRedirect("views/ActivityListView.jsp");		         
 		    }
 			
