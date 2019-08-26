@@ -34,8 +34,8 @@
 		<%
 			try {
 				UserInfoManager userInfoManager = new UserInfoManager();
-				//UserInfoModel userInfo = userInfoManager.GetUserInfo();		
-				//out.print(userInfo.company);
+				UserInfoModel userInfo = userInfoManager.GetUserInfo();		
+				out.print(userInfo.company);
 			} catch (Exception ex) {
 				out.print("<div style='color:red'>" + ex.getMessage() + "</div>");
 			}

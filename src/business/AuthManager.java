@@ -113,7 +113,7 @@ public class AuthManager {
 	
 	public void SaveAuthResponse(AuthResponseModel authResponse) throws Exception {
 		try {
-			URL url = GeneralMethods.class.getProtectionDomain().getCodeSource().getLocation();		    
+			URL url = AuthManager.class.getProtectionDomain().getCodeSource().getLocation();		    
 		    Path path = Paths.get(url.toURI());		    
 			FileOutputStream fileOut = new FileOutputStream(path.getParent().getParent() + "/AuthResponse.ini");
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
@@ -127,7 +127,7 @@ public class AuthManager {
 
 	public AuthResponseModel GetAuthResponse() throws Exception {
 		try {			
-			URL url = GeneralMethods.class.getProtectionDomain().getCodeSource().getLocation();		    
+			URL url = AuthManager.class.getProtectionDomain().getCodeSource().getLocation();		    
 		    Path path = Paths.get(url.toURI());
 		    File file = new File(path.getParent().getParent() + "/AuthResponse.ini");			
 			if(file.length() > 0) {

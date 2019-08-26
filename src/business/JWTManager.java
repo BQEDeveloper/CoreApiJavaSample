@@ -42,7 +42,8 @@ public class JWTManager {
 			this.authManager = new AuthManager();
 			
 			this.httpHeader = new HttpHeadersModel();
-			this.httpHeader.authorization = "Bearer " + this.authManager.GetAuthResponse().access_token;
+			if(this.authManager.GetAuthResponse() != null)
+				this.httpHeader.authorization = "Bearer " + this.authManager.GetAuthResponse().access_token;
 			
 			this.jwt = new JWTModel();
 			
