@@ -18,15 +18,17 @@ public class UserInfoManager {
 	public ConfigModel config;
 	public AuthResponseModel authResponse;
 	public HttpResponseModel httpResponse;
+	public AuthManager authManager;
 	public HttpHeadersModel headers;
 
 	public UserInfoManager() throws Exception {
 		try {
 			this.config = GeneralMethods.GetConfig();
 			this.authResponse = new AuthResponseModel();
+			this.authManager = new AuthManager();
 			this.headers = new HttpHeadersModel();
-			if (AuthManager.GetAuthResponse() != null)
-				this.authResponse = AuthManager.GetAuthResponse();
+			if (this.authManager.GetAuthResponse() != null)
+				this.authResponse = this.authManager.GetAuthResponse();
 			this.headers.authorization = "Bearer " + this.authResponse.access_token;
 		} catch (Exception ex) {
 			throw ex;

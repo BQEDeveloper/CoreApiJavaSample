@@ -111,7 +111,7 @@ public class AuthManager {
 		}
 	}
 	
-	public static void SaveAuthResponse(AuthResponseModel authResponse) throws Exception {
+	public void SaveAuthResponse(AuthResponseModel authResponse) throws Exception {
 		try {
 			URL url = GeneralMethods.class.getProtectionDomain().getCodeSource().getLocation();		    
 		    Path path = Paths.get(url.toURI());		    
@@ -125,7 +125,7 @@ public class AuthManager {
 		}
 	}
 
-	public static AuthResponseModel GetAuthResponse() throws Exception {
+	public AuthResponseModel GetAuthResponse() throws Exception {
 		try {			
 			URL url = GeneralMethods.class.getProtectionDomain().getCodeSource().getLocation();		    
 		    Path path = Paths.get(url.toURI());

@@ -24,6 +24,7 @@ public class JWTManager {
 	public AuthResponseModel authResponse;
 	public HttpHeadersModel httpHeader;
 	public HttpResponseModel httpResponse;
+	public AuthManager authManager;
 	public JWTModel jwt;
 	public JWKSModel jwks;
 	public String id_token;
@@ -36,10 +37,12 @@ public class JWTManager {
 			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			
 			this.config = config;
-			this.id_token = id_token;			
+			this.id_token = id_token;	
+			
+			this.authManager = new AuthManager();
 			
 			this.httpHeader = new HttpHeadersModel();
-			this.httpHeader.authorization = "Bearer " + AuthManager.GetAuthResponse().access_token;
+			this.httpHeader.authorization = "Bearer " + this.authManager.GetAuthResponse().access_token;
 			
 			this.jwt = new JWTModel();
 			

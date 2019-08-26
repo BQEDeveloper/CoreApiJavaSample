@@ -21,19 +21,21 @@ public class ActivityManager {
 	public ConfigModel config;
 	public AuthResponseModel authResponse;
 	public HttpHeadersModel httpHeader;
+	public AuthManager authManager;
 	public HttpResponseModel httpResponse;
 	
 	public ActivityManager() throws Exception {
 		try {
 			this.config = GeneralMethods.GetConfig();
 			
-			this.authResponse = new AuthResponseModel();			
+			this.authResponse = new AuthResponseModel();
+			this.authManager = new AuthManager();
 			
-			if(AuthManager.GetAuthResponse() != null) {
-				this.authResponse = AuthManager.GetAuthResponse();
+			if(this.authManager.GetAuthResponse() != null) {
+				this.authResponse = this.authManager.GetAuthResponse();
 				this.httpHeader = new HttpHeadersModel();
 				this.httpResponse = new HttpResponseModel();
-				this.httpHeader.authorization = "Bearer " + AuthManager.GetAuthResponse().access_token;
+				this.httpHeader.authorization = "Bearer " + this.authManager.GetAuthResponse().access_token;
 			}
 		} catch (Exception ex) {
 			throw ex;
