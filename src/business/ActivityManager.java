@@ -52,8 +52,7 @@ public class ActivityManager {
 			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);			
 			this.httpResponse = APIHelper.Get(this.config.CoreAPIBaseUrl + "/activity?page=0,100&orderby=name", this.httpHeader);
 			if(this.httpResponse.header_code == HttpURLConnection.HTTP_UNAUTHORIZED) { //UnAuthorised
-				AuthManager authManager = new AuthManager();
-        		this.authResponse = authManager.ReAuthorize();        		
+        		this.authResponse = this.authManager.ReAuthorize();        		
         		if(authResponse != null ) {
         			this.httpHeader.authorization = "Bearer " + this.authResponse.access_token;
         			return this.GetList();
@@ -80,8 +79,7 @@ public class ActivityManager {
 			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			this.httpResponse = APIHelper.Get(this.config.CoreAPIBaseUrl + "/activity/" + id, this.httpHeader);
 			if(this.httpResponse.header_code == HttpURLConnection.HTTP_UNAUTHORIZED) { //UnAuthorised
-				AuthManager authManager = new AuthManager();
-        		this.authResponse = authManager.ReAuthorize();        		
+        		this.authResponse = this.authManager.ReAuthorize();        		
         		if(authResponse != null ) {
         			this.httpHeader.authorization = "Bearer " + this.authResponse.access_token;
         			return this.Get(id);
@@ -108,14 +106,10 @@ public class ActivityManager {
 			activityJson = mapper.writeValueAsString(activity);
 			this.httpResponse = APIHelper.Post(this.config.CoreAPIBaseUrl + "/activity/", activityJson, this.httpHeader);
 			if(this.httpResponse.header_code == HttpURLConnection.HTTP_UNAUTHORIZED) { //UnAuthorised
-				AuthManager authManager = new AuthManager();
-        		this.authResponse = authManager.ReAuthorize();        		
+        		this.authResponse = this.authManager.ReAuthorize();        		
         		if(authResponse != null ) {
         			this.httpHeader.authorization = "Bearer " + this.authResponse.access_token;
-        			return this.Create(activity);
-        			//HttpResponseModel newHttpResponse = new HttpResponseModel();
-        			//newHttpResponse = APIHelper.Post(this.config.CoreAPIBaseUrl + "/activity/", activityJson, this.httpHeader);
-        			//return newHttpResponse;        			
+        			return this.Create(activity);       			
         		}
 			} else if (this.httpResponse.header_code == HttpURLConnection.HTTP_OK || this.httpResponse.header_code == HttpURLConnection.HTTP_CREATED) { //Success or Created
 				activityJson = httpResponse.body;	
@@ -139,8 +133,7 @@ public class ActivityManager {
 			activityJson = mapper.writeValueAsString(activity);
 			this.httpResponse = APIHelper.Put(this.config.CoreAPIBaseUrl + "/activity/" + id, activityJson, this.httpHeader);
 			if(this.httpResponse.header_code == HttpURLConnection.HTTP_UNAUTHORIZED) { //UnAuthorised
-				AuthManager authManager = new AuthManager();
-        		this.authResponse = authManager.ReAuthorize();        		
+        		this.authResponse = this.authManager.ReAuthorize();        		
         		if(authResponse != null ) {
         			this.httpHeader.authorization = "Bearer " + this.authResponse.access_token;
         			return this.Update(id, activity);

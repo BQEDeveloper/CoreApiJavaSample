@@ -44,8 +44,7 @@ public class UserInfoManager {
 			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			this.httpResponse = APIHelper.Get(this.config.CoreIdentityBaseUrl + "/connect/userinfo", this.headers);
 			if (this.httpResponse.header_code == HttpURLConnection.HTTP_UNAUTHORIZED) { // UnAuthorised
-				AuthManager authManager = new AuthManager();
-				this.authResponse = authManager.ReAuthorize();
+				this.authResponse = this.authManager.ReAuthorize();
 				if (authResponse != null) {
 					this.headers.authorization = "Bearer " + this.authResponse.access_token;
 					return this.GetUserInfo();
