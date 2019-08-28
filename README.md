@@ -23,7 +23,7 @@ To successfully run this app, you need the following:
   * A Core [developer](https://api-developer.bqecore.com/webapp) account
   * An app on Developer Portal and the associated client_id, client_secret and redirect_uri
   * Core company
-  * A Java environment comprising of Tomcat. You can download it from [here](https://tomcat.apache.org/).
+  * A Java platform or [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html), and a Java environment comprising of [Tomcat](https://tomcat.apache.org/).
 
 ### What is supported?
   1. Authorization 
