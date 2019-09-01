@@ -43,3 +43,10 @@ Core API allows operators to manipulate individual data items and return a resul
 ## Built With
 
   * [Java](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
+  
+## Framework and Version
+    JSP and Servlets
+  
+  | Package| Version|
+  |------------------------|--------------------------------------------|
+  |JRE|1.8.0_181                    |
