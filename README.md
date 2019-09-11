@@ -5,8 +5,8 @@ A sample app demonstrating OAuth 2.0 and other features using Core API.
 
   1. Clone the Core API-Java-Sample project on your local environment.
   2. Go to Config.ini and insert the client_secret, client_id and redirect_uri of your app. Please note the redirect_uri should point to the index.jsp file of the project.
-     As an example, if you are running Java on your localhost with port 1111, the redirect_uri will look like
-     http://localhost:1111/CoreApi-Java-Sample. Note: The redirect_uri of your app should exactly match with the redirect_uri in your config file.
+     As an example, if you are running Java on your localhost with port 8080, the redirect_uri will look like
+     http://localhost:8080/CoreApiJavaSample/. Note: The redirect_uri of your app should exactly match with the redirect_uri in your config file.
   ### Example:
 
   | Registered Redirect URI| Redirect URI Parameter Passed To Authorize| Valid |
