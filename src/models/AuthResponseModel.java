@@ -11,4 +11,5 @@ public class AuthResponseModel implements Serializable  {
     public BigInteger expires_in;
     public String token_type;
     public String refresh_token;
+    public String scope;
 }
