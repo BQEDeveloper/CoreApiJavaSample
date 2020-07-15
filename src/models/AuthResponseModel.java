@@ -12,4 +12,5 @@ public class AuthResponseModel implements Serializable  {
     public String token_type;
     public String refresh_token;
     public String scope;
+    public String endpoint;
 }

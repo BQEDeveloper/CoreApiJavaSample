@@ -20,7 +20,6 @@ public class GeneralMethods {
 			URL url = GeneralMethods.class.getProtectionDomain().getCodeSource().getLocation();		    
 		    Path path = Paths.get(url.toURI());		    
 		    properties.load(new FileInputStream(path.getParent().getParent() + "/config.ini"));
-		    config.CoreAPIBaseUrl = properties.getProperty("CoreAPIBaseUrl");
 		    config.CoreIdentityBaseUrl = properties.getProperty("CoreIdentityBaseUrl");
 		    config.Scopes = properties.getProperty("Scopes");
 		    config.Secret = properties.getProperty("Secret");

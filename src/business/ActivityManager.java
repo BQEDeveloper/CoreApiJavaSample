@@ -18,7 +18,6 @@ import shared.GeneralMethods;
 
 public class ActivityManager {
 	
-	public ConfigModel config;
 	public AuthResponseModel authResponse;
 	public HttpHeadersModel httpHeader;
 	public AuthManager authManager;
@@ -26,7 +25,6 @@ public class ActivityManager {
 	
 	public ActivityManager() throws Exception {
 		try {
-			this.config = GeneralMethods.GetConfig();
 			
 			this.authResponse = new AuthResponseModel();
 			this.authManager = new AuthManager();
@@ -50,7 +48,7 @@ public class ActivityManager {
 			mapper.setSerializationInclusion(Include.NON_NULL);
 			mapper.setSerializationInclusion(Include.NON_EMPTY);
 			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);			
-			this.httpResponse = APIHelper.Get(this.config.CoreAPIBaseUrl + "/activity?page=0,100&orderby=name", this.httpHeader);
+			this.httpResponse = APIHelper.Get(this.authResponse.endpoint + "/activity?page=0,1000&orderby=name", this.httpHeader);
 			if(this.httpResponse.header_code == HttpURLConnection.HTTP_UNAUTHORIZED) { //UnAuthorised
         		this.authResponse = this.authManager.ReAuthorize();        		
         		if(authResponse != null ) {
@@ -77,7 +75,7 @@ public class ActivityManager {
 			mapper.setSerializationInclusion(Include.NON_NULL);
 			mapper.setSerializationInclusion(Include.NON_EMPTY);
 			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-			this.httpResponse = APIHelper.Get(this.config.CoreAPIBaseUrl + "/activity/" + id, this.httpHeader);
+			this.httpResponse = APIHelper.Get(this.authResponse.endpoint + "/activity/" + id, this.httpHeader);
 			if(this.httpResponse.header_code == HttpURLConnection.HTTP_UNAUTHORIZED) { //UnAuthorised
         		this.authResponse = this.authManager.ReAuthorize();        		
         		if(authResponse != null ) {
@@ -104,7 +102,7 @@ public class ActivityManager {
 			mapper.setSerializationInclusion(Include.NON_EMPTY);
 			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			activityJson = mapper.writeValueAsString(activity);
-			this.httpResponse = APIHelper.Post(this.config.CoreAPIBaseUrl + "/activity/", activityJson, this.httpHeader);
+			this.httpResponse = APIHelper.Post(this.authResponse.endpoint + "/activity/", activityJson, this.httpHeader);
 			if(this.httpResponse.header_code == HttpURLConnection.HTTP_UNAUTHORIZED) { //UnAuthorised
         		this.authResponse = this.authManager.ReAuthorize();        		
         		if(authResponse != null ) {
@@ -131,7 +129,7 @@ public class ActivityManager {
 			mapper.setSerializationInclusion(Include.NON_EMPTY);
 			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			activityJson = mapper.writeValueAsString(activity);
-			this.httpResponse = APIHelper.Put(this.config.CoreAPIBaseUrl + "/activity/" + id, activityJson, this.httpHeader);
+			this.httpResponse = APIHelper.Put(this.authResponse.endpoint + "/activity/" + id, activityJson, this.httpHeader);
 			if(this.httpResponse.header_code == HttpURLConnection.HTTP_UNAUTHORIZED) { //UnAuthorised
         		this.authResponse = this.authManager.ReAuthorize();        		
         		if(authResponse != null ) {
@@ -153,7 +151,7 @@ public class ActivityManager {
 	public HttpResponseModel Delete(String id) throws Exception {
 		try {	
 			String activityJson;
-			this.httpResponse = APIHelper.Delete(this.config.CoreAPIBaseUrl + "/activity/" + id, this.httpHeader);
+			this.httpResponse = APIHelper.Delete(this.authResponse.endpoint + "/activity/" + id, this.httpHeader);
 			if(this.httpResponse.header_code == HttpURLConnection.HTTP_UNAUTHORIZED) { //UnAuthorised
 				AuthManager authManager = new AuthManager();
         		this.authResponse = authManager.ReAuthorize();        		
