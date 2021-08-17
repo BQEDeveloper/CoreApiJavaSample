@@ -117,6 +117,8 @@ public class AuthManager {
 		    Path path = Paths.get(url.toURI());		    
 			FileOutputStream fileOut = new FileOutputStream(path.getParent().getParent() + "/AuthResponse.ini");
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            if(authResponse.endpoint.endsWith("/"))
+            	authResponse.endpoint =  authResponse.endpoint.substring(0, authResponse.endpoint.length() - 1);
             objectOut.writeObject(authResponse);
             objectOut.close();
 
